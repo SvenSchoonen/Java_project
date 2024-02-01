@@ -26,6 +26,9 @@ public class AllSubstringsPrinter {
      */
     public void printSubstringsLeftAlignedLeftTruncated(String stringToSubstring) {
         //YOUR CODE
+        for (int i = 0; i < stringToSubstring.length(); i++) {
+            System.out.println(stringToSubstring.substring(i));
+        }
     }
 
     /**
@@ -36,6 +39,30 @@ public class AllSubstringsPrinter {
      */
     public void printAllSubstrings(String stringToSubstring, boolean leftTruncated, boolean leftAligned) {
         //YOUR CODE
+        //there are many possible approaches to the flowcontrol of this assignment
+        //here I show only one. See if you can think of other and possibly better solutions?
+        int length = stringToSubstring.length();
+        if (leftTruncated) {
+            if (leftAligned) {
+                for (int i = 0; i < length; i++) {
+                    System.out.println(stringToSubstring.substring(i));
+                }
+            } else {
+                for (int i = 0; i < length; i++) {
+                    System.out.println(createSpacer(i) + stringToSubstring.substring(i));
+                }
+            }
+        } else {
+            if (leftAligned) {
+                for (int i = 0; i < length; i++) {
+                    System.out.println(stringToSubstring.substring(0, length - i));
+                }
+            } else {
+                for (int i = 0; i < length; i++) {
+                    System.out.println(createSpacer(i) + stringToSubstring.substring(0, length - i));
+                }
+            }
+        }
     }
 
     /**

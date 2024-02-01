@@ -47,7 +47,8 @@ public class Protein implements Comparable<Protein> {
     @Override
     public int compareTo(Protein other) {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");
+        //delegates to class String
+        return this.name.compareTo(other.name);
     }
     
     /**
@@ -57,7 +58,28 @@ public class Protein implements Comparable<Protein> {
      */
     public static Comparator<Protein> getSorter(SortingType type) {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (type == null) throw new IllegalArgumentException("no such type supported: " + type);
+        switch (type) {
+            case PROTEIN_NAME: {
+                return new Comparator<Protein>() {
+                    @Override
+                    public int compare(Protein o1, Protein o2) {
+                        return o1.getName().compareTo(o2.getName());
+                    }
+                };
+                //OR, with lambda
+                //return (o1, o2) -> o1.getName().compareTo(o2.getName());
+            }
+            case ACCESSION_NUMBER: {
+                //as lambda
+                return (o1, o2) -> o1.getAccession().toLowerCase().compareTo(o2.getAccession().toLowerCase());
+            }
+            case GO_ANNOTATION: {
+
+            }
+
+            default: throw new IllegalArgumentException("no such type supported: " + type);
+        }
     }
 
     /**

@@ -78,7 +78,20 @@ public class Datatypes {
 //            }
 //        }
 //        double fraction = gcCount/theDNA.length();
-        return 0;
+        //to uppercase
+        theDNA = theDNA.toUpperCase();
+        //initialize to 0
+        int gcCount = 0;
+        for (int i = 0; i < theDNA.length(); i++) {
+            char nucleotide = theDNA.charAt(i);
+            if (nucleotide == 'C' || nucleotide == 'G') {
+                gcCount++;
+            }
+        }
+        //cast to double
+        double fraction = (double)gcCount/theDNA.length();
+        //return fraction instead of 0
+        return fraction;
     }
 
     /**
@@ -106,7 +119,10 @@ public class Datatypes {
      * For any Java object you can use object.toString() to get this string representation
      */
     String[] getFirstAndLastAsStringRepresentation(Object[] input) {
-        return null;
+        String[] firstAndLast = new String[2];
+        firstAndLast[0] = input[0].toString();
+        firstAndLast[1] = input[input.length - 1].toString();
+        return firstAndLast;
     }
 
     /**
@@ -116,11 +132,12 @@ public class Datatypes {
      * @return cubedInput
      */
     int[] cubeAll(int[] input) {
-        int arrayLength = 0; //YOU SHOULD GET THE CORRECT ARRAY LENGTH FIRST
+        int arrayLength = input.length;
+        int[] cubed = new int[arrayLength];
         for(int i = 0; i < arrayLength; i++) {
-            //YOUR ITERATION CODE HERE
+            cubed[i] = (int)Math.pow(input[i], 3);
         }
-        return null;
+        return cubed;
     }
 
     /**
@@ -129,7 +146,15 @@ public class Datatypes {
      * @return the cumulative product
      */
     int cumulativeProduct(int[] input) {
-        return 0;
+        int total = 1;
+        for (int i : input) {
+            total *= i;
+        }
+        //OR
+//        for (int i = 0; i < input.length; i++) {
+//            total *= i;
+//        }
+        return total;
     }
 
 }

@@ -1,5 +1,7 @@
 package section3_apis.part2_collections;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -8,6 +10,40 @@ import java.util.Objects;
  */
 public class Course {
     private String courseId;
+
+
+    //THIS WILL HOLD THE GRADES FOR THE STUDENTS
+    Map<Integer, Double> grades = new HashMap<>();
+
+    /**
+     * Stores a student grade
+     * @param studentId
+     * @param grade
+     */
+    public void addStudentGrade(int studentId, double grade) {
+        if (grades.containsKey(studentId)) {
+            throw new IllegalArgumentException("grade already present for student " + studentId);
+        }
+        grades.put(studentId, grade);
+    }
+
+    /**
+     * returns the grade for the given student
+     * @param student
+     * @return
+     */
+    public double getGrade(Student student) {
+        return grades.get(student.getStudentId());
+    }
+
+    /**
+     * to be used to check if a student has a grade in this course.
+     * @param student
+     * @return
+     */
+    public boolean hasGrade(Student student) {
+        return grades.containsKey(student.getStudentId());
+    }
 
     public Course(final String courseId) {
         this.courseId = courseId;

@@ -1,7 +1,6 @@
 package section3_apis.part2_collections;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * YOUR CHALLENGE:
@@ -9,6 +8,37 @@ import java.util.Map;
  * It is your task to implement this logic. Using the right collection type(s).
  */
 public class StudentAdmin {
+    //A map is most appropriate here
+    private Map<Integer, Student> students = new HashMap<>();
+    //Again a map is most appropriate
+    private Map<String, Course> courses = new HashMap<>();
+
+    /**
+     * Adds a student instance
+     * @param student
+     */
+    protected void addStudent(Student student) {
+        Objects.requireNonNull(student);
+        students.put(student.getStudentId(), student);
+    }
+
+    /**
+     * Registers a grade for a student for a course
+     * Will create a new Course instance if not existing
+     * @param courseId
+     * @param studentId
+     * @param grade
+     */
+    public void registerGrade(String courseId, int studentId, double grade) {
+        Course course;
+        if (courses.containsKey(courseId)) {
+            courses.get(courseId).addStudentGrade(studentId, grade);
+        } else {
+            course = new Course(courseId);
+            course.addStudentGrade(studentId, grade);
+            courses.put(courseId, course);
+        }
+    }
 
     /**
      * Returns the students that are present in the database.
@@ -19,7 +49,20 @@ public class StudentAdmin {
      */
     public List<Student> getStudents(String searchString) {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");    }
+        if (searchString.equals("*")) {
+            return new ArrayList<>(this.students.values());
+        } else {
+            searchString = searchString.toLowerCase();
+            List<Student> foundStudents = new ArrayList<>();
+            for (Student student : this.students.values()) {
+                if (student.getFirstName().toLowerCase().contains(searchString)
+                        || student.getLastName().toLowerCase().contains(searchString)) {
+                    foundStudents.add(student);
+                }
+            }
+            return foundStudents;
+        }
+    }
 
     /**
      * Returns the grade of a student for the given course
@@ -29,7 +72,8 @@ public class StudentAdmin {
      */
     public double getGrade(Student student, Course course) {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");
+        //NB This is a bit dodgy, I know. The method argument should be a String (courseId)
+        return courses.get(course.getCourseId()).getGrade(student);
     }
 
     /**
@@ -39,7 +83,13 @@ public class StudentAdmin {
      */
     public Map<String, Double> getGradesForStudent(Student student) {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<String, Double> grades = new HashMap<>();
+        for (Course course : courses.values()) {
+            if (course.hasGrade(student)) {
+                grades.put(course.getCourseId(), course.getGrade(student));
+            }
+        }
+        return grades;
     }
 
     /**

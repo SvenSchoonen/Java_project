@@ -12,7 +12,8 @@ public class CombinerFactory {
      */
     static StringCombiner getQuotedCombiner() {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Solution alternative 1: create a top-level class that implements the interface
+        return new QuotedCombiner();
     }
 
     /**
@@ -28,7 +29,8 @@ public class CombinerFactory {
      */
     static StringCombiner getReversedCombiner() {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Solution alternative 2: create an inner class that implements the interface
+        return new ReversedCombiner();
     }
 
     /**
@@ -48,7 +50,36 @@ public class CombinerFactory {
      */
     static StringCombiner getAsciiSumCombiner() {
         //YOUR CODE HERE (and remove the throw statement)
-        throw new UnsupportedOperationException("Not implemented yet");
+        //Solution alternative 3: return an anonymous method-local implementer of the interface
+        return new StringCombiner() {
+            @Override
+            public String combine(String first, String second) {
+                int firstSum = 0;
+                for (char c : first.toCharArray()) {
+                    firstSum += c;
+                }
+
+                int secondSum = 0;
+                for (char c : second.toCharArray()) {
+                    secondSum += c;
+                }
+                return firstSum + " " + secondSum;
+            }
+        };
     }
 
+    /**
+     * this is a privae static inner class implementing the interface
+     */
+    private static class ReversedCombiner implements StringCombiner {
+
+        @Override
+        public String combine(String first, String second) {
+            //yes this is much easier in Python!!
+            final String oneRev = new StringBuilder(first).reverse().toString();
+            final String secondRev = new StringBuilder(second).reverse().toString();
+
+            return first + oneRev + " " + second + secondRev;
+        }
+    }
 }

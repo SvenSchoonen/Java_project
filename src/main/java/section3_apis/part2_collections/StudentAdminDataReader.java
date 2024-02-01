@@ -70,8 +70,10 @@ public class StudentAdminDataReader {
         @Override
         public void processLine(String line) {
             String[] elements = line.split("\t");
-            System.out.println(Arrays.toString(elements));
+            //System.out.println(Arrays.toString(elements));
             //-------------------  YOUR CODE HERE   -------------------//
+            Student student = new Student(Integer.parseInt(elements[0]), elements[1], elements[2]);
+            studentAdmin.addStudent(student);
         }
     }
 
@@ -82,8 +84,12 @@ public class StudentAdminDataReader {
         @Override
         public void processLine(String line) {
             String[] elements = line.split(";");
-            System.out.println(Arrays.toString(elements));
+            //System.out.println(Arrays.toString(elements));
             //-------------------  YOUR CODE HERE   -------------------//
+            String courseId = elements[0];
+            int studentId = Integer.parseInt(elements[1]);
+            double grade = Double.parseDouble(elements[2]);
+            studentAdmin.registerGrade(courseId, studentId, grade);
 
         }
     }

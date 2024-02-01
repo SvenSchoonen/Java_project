@@ -38,7 +38,7 @@ public class StartingJava {
         /*PUT YOUR CODE HERE
          and replace the zero in the return statement (return 0;)
          with your own value.*/
-        return 0;
+        return x + y;
     }
 
     /**
@@ -51,7 +51,7 @@ public class StartingJava {
      */
     public double calculateSpeed(double distanceInMeters, double timeInSeconds) {
         //YOUR CODE HERE
-        return 0;
+        return (distanceInMeters / 1000) / (timeInSeconds / 3600);
     }
 
     /**
@@ -66,7 +66,7 @@ public class StartingJava {
      */
     public long divideAndRound(double x, double y) {
         //YOUR CODE
-        return 0;
+        return Math.round(x/y);
     }
 
     /**
@@ -78,7 +78,7 @@ public class StartingJava {
      */
     public String getGreeting(int index) {
         //YOUR CODE
-        return "";
+        return GREETINGS[index];
     }
 
     //This is a constant - an array of Strings used for the getGreeting() method
@@ -100,7 +100,10 @@ public class StartingJava {
      */
     public Duck createDuck(int swimSpeed, String nameOfDuck) {
         //YOUR CODE
-        return null;
+        Duck duck = new Duck();
+        duck.swimSpeed = swimSpeed;
+        duck.name = nameOfDuck;
+        return duck;
     }
 
 }
