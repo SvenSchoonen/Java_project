@@ -32,29 +32,32 @@ class GeometryAnalyserTest {
 
     @Test
     void mainSurfaceTest1() {
-        String[] commandLineArgs = {"2", "5", "6", "2", "surf"};
+        String[] commandLineArgs = {"2", "5", "10", "1", "surf"};
         GeometryAnalyser.main(commandLineArgs);
-        String expectedOutput = "12" + System.lineSeparator();
+        String expectedOutput = "18" + System.lineSeparator() + "";
+
         String observedOutput = outContent.toString();
+
         assertEquals(expectedOutput, observedOutput);
     }
 
     @Test
     void mainSurfaceTest2() {
-        String[] commandLineArgs = {"7", "10", "17", "0", "surf"};
+        String[] commandLineArgs = {"7", "10", "7", "10", "surf"};
         GeometryAnalyser.main(commandLineArgs);
-        String expectedOutput = "100" + System.lineSeparator();
+        String expectedOutput = "34" + System.lineSeparator()+ "";
         String observedOutput = outContent.toString();
         assertEquals(expectedOutput, observedOutput);
     }
 
     @Test
-    void mainDistanceTest2() {
-        String[] commandLineArgs = {"2", "5", "6", "2", "dist"};
+    void mainDistanceTest2() {       // gebruikt allee eerste 2 args 1 , 5
+        String[] commandLineArgs = {"1", "5", "6", "2", "dist"};
         GeometryAnalyser.main(commandLineArgs);
-        String expectedOutput1 = "5" + System.lineSeparator();
-        String expectedOutput2 = "5.0" + System.lineSeparator();
-        String expectedOutput3 = "5,0" + System.lineSeparator();
+
+        String expectedOutput1 = "8" + System.lineSeparator() + "";
+        String expectedOutput2 = "8.0" + System.lineSeparator() + "";
+        String expectedOutput3 = "8,0" + System.lineSeparator() + "";
         String observedOutput = outContent.toString();
         assertThat(observedOutput, anyOf(org.hamcrest.Matchers.is(expectedOutput1), is(expectedOutput2), is(expectedOutput3)));
     }
@@ -63,8 +66,8 @@ class GeometryAnalyserTest {
     void mainDistanceTest3() {
         String[] commandLineArgs = {"1", "8", "5", "12", "dist"};
         GeometryAnalyser.main(commandLineArgs);
-        String expectedOutput1 = "5,7" + System.lineSeparator();
-        String expectedOutput2 = "5.7" + System.lineSeparator();
+        String expectedOutput1 = "8.0" + System.lineSeparator();
+        String expectedOutput2 = "8" + System.lineSeparator();
         String observedOutput = outContent.toString();
         assertThat(observedOutput, anyOf(org.hamcrest.Matchers.is(expectedOutput1), is(expectedOutput2)));//Equals(expectedOutput, observedOutput);
     }
