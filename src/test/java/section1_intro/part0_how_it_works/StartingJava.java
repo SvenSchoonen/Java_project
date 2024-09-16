@@ -45,7 +45,7 @@ public class StartingJava {
         double speed_ms = (double) meters / seconds;
         System.out.println("Speed in meters per second: " + speed_ms);
         double speed_kmh = speed_ms * 3.6;
-        return speed_kmh;
+        return Math.round(speed_kmh);
     }
 
     public int divideAndRound(double x, double y) {
@@ -64,11 +64,6 @@ public class StartingJava {
                 return "Hello";
         }
     }
-//    public class CreateDuck {
-//
-//        public static Duck createDuck(int swimSpeed, String name) {
-//            return new Duck(swimSpeed, name);
-//        }
-//    }
+
 
 }

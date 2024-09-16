@@ -3,6 +3,7 @@ package section1_intro.part0_how_it_works;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import section1_intro.part1_language_basics.CreateDuck;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -52,6 +53,7 @@ public class StartingJavaTest {
         String printedResult = outContent.toString();
         sysOut.print(printedResult);
         String expectedResult = "Hello," + System.getProperty("user.name") + "!";
+        //expectedResult = expectedResult
         assertEquals(expectedResult, printedResult);
         System.setOut(sysOut);
     }
@@ -93,42 +95,27 @@ public class StartingJavaTest {
         assertEquals("Yo!", startingJava.getGreeting(3));
     }
 
- //   @Test
-//    public void testCreateDuck() {
-//        int speed = 7;
-//        String name = "Shelduck";
-//
-//        // Use CreateDuck to create a Duck instance
-//        Duck duck = CreateDuck.createDuck(speed, name);
-//
-//        // Verify the properties of the Duck instance
-//        assertEquals(7, duck.getSwimSpeed()); // Use getter if swimSpeed is private
-//        assertEquals(name, duck.getName());   // Use getter if name is private
-//
-//        // Update speed and name
-//        speed = 2;
-//        name = "Common Mallard";
-//
-//        // Create another Duck instance
-//        Duck duck2 = CreateDuck.createDuck(speed, name);
-//
-//        // Verify the properties of the second Duck instance
-//        assertEquals(2, duck2.getSwimSpeed()); // Use getter if swimSpeed is private
-//        assertEquals(name, duck2.getName());   // Use getter if name is private
-//    }
+    @Test
+    public void testCreateDuck() {
+        // Test data for the first Duck
+        int speed1 = 7;
+        String name1 = "Shelduck";
 
+        Duck duck1 = CreateDuck.createDuck(speed1, name1);
 
-    //   @Test
-    //   public void testPrintHelloUser() {
-//        PrintStream sysOut = System.out;
+        // Verify the properties of the first Duck
+        assertEquals(speed1, duck1.getSwimSpeed(), "The swimSpeed should match the given speed.");
+        assertEquals(name1, duck1.getName(), "The name should match the given name.");
 
-//        System.setOut(new PrintStream(createStartingJavaTest().outContent);
-//        StartingJavaTest.testPrintHelloUser();
-        //       String printedResult = createStartingJavaTest().outContent.toString();
-//        sysOut.print(printedResult);
-//        String expectedResult = "Hello," + System.getProperty("user.name") + "!";
-//        assertEquals(expectedResult, printedResult);
-//        System.setOut(sysOut);
-//    }
+        // Test data for the second Duck
+        int speed2 = 2;
+        String name2 = "Common Mallard";
+
+        Duck duck2 = CreateDuck.createDuck(speed2, name2);
+
+        // Verify the properties of the second Duck
+        assertEquals(speed2, duck2.getSwimSpeed(), "The swimSpeed should match the given speed.");
+        assertEquals(name2, duck2.getName(), "The name should match the given name.");
+    }
 
 }
